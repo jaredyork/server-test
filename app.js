@@ -23,4 +23,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('disconnect', function() {
         console.log("A user disconnected.");
     });
+
+    socket.on('client-connect', function() {
+        console.log("Browser window loaded for client.");
+    });
 });

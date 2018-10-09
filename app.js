@@ -1,5 +1,11 @@
 var express = require('express');
 var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+var port = 8000;
+server.listen(port);
+
+console.log("Server started up...");
 
 app.use(express.static('public'));
 
@@ -11,7 +17,10 @@ app.get("/dreams", function(req, res) {
     response.send(dream);
 });
 
-var listener = app.listen(8080, function() {
-    console.log("Your app is listening on port " + listener.address().port);
-});
+io.sockets.on('connection', function(socket) {
+    console.log("A user connected!");
 
+    socket.on('disconnect', function() {
+        console.log("A user disconnected.");
+    });
+});

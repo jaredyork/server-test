@@ -10,6 +10,6 @@ io.on('connection', function(socket) {
     });
 });
 
-http.listen(3001, function() {
-    console.log('Listening on *:3000');
+http.listen(8080, function() {
+    console.log('Listening on *:8080');
 });

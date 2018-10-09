@@ -13,4 +13,7 @@ io.on('connection', function(socket) {
     })
 });
 
-console.log('Server running at http://localhost:8080/')
+server.listen(8080, function(err) {
+    if (err) throw err
+    console.log('listening on port 8080.');
+});

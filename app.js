@@ -31,7 +31,10 @@ io.sockets.on('connection', function(socket) {
         console.log("Browser window loaded for client.");
 
         var input = fs.createReadStream('keywords.txt');
-        readKeywordFile(socket, input, printKeywordData);
+        for (var i = 0; i < 10000; i++)
+        {
+            readKeywordFile(socket, input, printKeywordData);
+        }
     });
 });
 

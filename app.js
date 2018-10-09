@@ -1,19 +1,17 @@
-var server = require('http').createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello World\n');
-  }).listen(8080, 'localhost');
+var express = require('express');
+var app = express();
 
-var io = require('socket.io')(server);
+app.use(express.static('public'));
 
-io.on('connection', function(socket) {
-    console.log('A user connected!.');
-
-    socket.on('disconnect', function() {
-        console.log("A user disconnected.");
-    })
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/views/index.html");
 });
 
-server.listen(8080, function(err) {
-    if (err) throw err
-    console.log('listening on port 8080.');
+app.get("/dreams", function(req, res) {
+    response.send(dream);
 });
+
+var listener = app.listen(8080, function() {
+    console.log("Your app is listening on port " + listener.address().port);
+});
+

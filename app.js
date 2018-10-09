@@ -6,9 +6,7 @@ var server = require('http').createServer(function (req, res) {
 var io = require('socket.io')(server);
 
 io.on('connection', function(socket) {
-    socket.on('connect', function() {
-        console.log('A new user connected!');
-    });
+    console.log('A user connected!.');
 
     socket.on('disconnect', function() {
         console.log("A user disconnected.");

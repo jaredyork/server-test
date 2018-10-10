@@ -16,25 +16,19 @@ app.get("/", function(req, res) {
     res.sendFile(__dirname + "/views/index.html");
 });
 
-app.get("/dreams", function(req, res) {
-    response.send(dream);
-});
-
 io.sockets.on('connection', function(socket) {
-    console.log("A user connected!");
+    console.log("A user connected! Users connected = " + io.engine.clientsCount);
 
     socket.on('disconnect', function() {
-        console.log("A user disconnected.");
+        console.log("A user disconnected.  Users connected = " + io.engine.clientsCount);
     });
 
     socket.on('client-connect', function() {
         console.log("Browser window loaded for client.");
 
         var input = fs.createReadStream('keywords.txt');
-        for (var i = 0; i < 10000; i++)
-        {
-            readKeywordFile(socket, input, printKeywordData);
-        }
+
+        readKeywordFile(socket, input, printKeywordData);
     });
 });
 
